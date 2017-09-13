@@ -61,7 +61,6 @@ function handleClick(e) {
 			showBadgeText = !showBadgeText;
 			document.getElementById("badge-toggle").dataset.enabled = showBadgeText.toString();
 
-			if (debug) console.log("SEND: set-badge-enabled to background,options");
 			browser.runtime.sendMessage({ target: "background,options", action: "set-badge-enabled", data: { showBadgeText: showBadgeText } });
 			break;
 
