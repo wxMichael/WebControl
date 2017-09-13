@@ -18,7 +18,7 @@
 	],
 
 	"description": "Blacklist domains from running scripts, videos, and more.",
-	"homepage_url": "https://github.com/wxMichael",
+	"homepage_url": "https://github.com/wxMichael/WebControl",
 
 	"icons": {
 		"32": "icons/HTML5_Badge_32.png"
