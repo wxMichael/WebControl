@@ -17,7 +17,7 @@
 		"webRequestBlocking"
 	],
 
-	"description": "WebControl",
+	"description": "Blacklist domains from running scripts, videos, and more.",
 	"homepage_url": "https://github.com/wxMichael",
 
 	"icons": {
