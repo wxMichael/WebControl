@@ -1,10 +1,11 @@
 {
 	"manifest_version": 2,
 	"name": "WebControl",
-	"version": "1.0",
+	"version": "1.0.2",
 
 	"applications": {
 		"gecko": {
+			"id": "{84c4ad14-04f5-4775-8720-c44c352b3527}",
 			"strict_min_version": "51.0"
 		}
 	},
