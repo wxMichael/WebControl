@@ -1,0 +1,50 @@
+{
+	"manifest_version": 2,
+	"name": "WebControl",
+	"version": "1.0",
+
+	"applications": {
+		"gecko": {
+			"strict_min_version": "51.0"
+		}
+	},
+
+	"permissions": [
+		"tabs",
+		"storage",
+		"<all_urls>",
+		"webRequest",
+		"webRequestBlocking"
+	],
+
+	"description": "WebControl",
+	"homepage_url": "https://github.com/wxMichael",
+
+	"icons": {
+		"32": "icons/HTML5_Badge_32.png"
+	},
+
+	"options_ui": {
+		"browser_style": true,
+		"open_in_tab": true,
+		"page": "html/options.html"
+	},
+
+	"browser_action": {
+		"default_icon": "icons/HTML5_Badge_32.png",
+		"default_title": "WebControl",
+		"default_popup": "html/popup.html"
+	},
+
+	"background": {
+		"scripts": ["js/background.js"]
+	},
+
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"run_at": "document_start",
+			"js": ["js/content.js"]
+		}
+	]
+}

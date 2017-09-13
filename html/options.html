@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../css/options.css">
+	</head>
+	<body>
+		<header>
+			<img src="../icons/HTML5_Badge_64.png">
+			<span>WebControl</span>
+		</header>
+		<table>
+			<tr>
+				<td id="switch-row" colspan="3">
+					<div class="switch">
+						<input id="badge-toggle" type="checkbox" checked>
+						<label for="badge-toggle"></label>
+					</div>
+					Show blocked item count on badge
+				</td>
+			</tr>
+			<tr id="domain-row">
+				<td colspan="2">
+					<select id="domains" size="5"></select>
+				</td>
+				<td>
+					<table id="domain-info">
+						<tr>
+							<td>Scripts:</td>
+							<td id="domain-scripts"></td>
+						</tr>
+						<tr>
+							<td>Styles:</td>
+							<td id="domain-styles"></td>
+						</tr>
+						<tr>
+							<td>Images:</td>
+							<td id="domain-images"></td>
+						</tr>
+						<tr>
+							<td>Objects:</td>
+							<td id="domain-objects"></td>
+						</tr>
+						<tr>
+							<td>Media:</td>
+							<td id="domain-media"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
+					<input id="clear" type="button" value="Remove All" disabled>
+				</td>
+				<td class="right">
+					<input id="remove" type="button" value="Remove Domain" disabled>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		<script src="../js/options.js"></script>
+	</body>
+</html>
