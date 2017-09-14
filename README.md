@@ -1,6 +1,9 @@
 # WebControl
 A Firefox WebExtension to blacklist domains from running scripts, videos, and more.
 
+Ever go to a website and a video starts playing automatically, without asking?
+Simply click the WebControl icon in the toolbar, disable media, and that domain won't ever get to play a video again.
+
 ## Download
 You can download WebControl from [AMO](https://addons.mozilla.org/en-US/firefox/addon/webcontrol/) or the [Releases](https://github.com/wxMichael/WebControl/releases) page.
 
