@@ -14,11 +14,11 @@ function loadStorage() {
 				storage.settings.showBadgeText = true;
 				browser.storage.local.set({ settings: { showBadgeText: true } }).then(
 					() => { },
-					() => { console.log("FAILURE: Set showBadgeText default", true); }
+					() => { }
 				);
 			}
 		},
-		() => { console.log("FAILURE: loadStorage"); }
+		() => { }
 	);
 
 	return promise;
@@ -45,10 +45,10 @@ function handleMessage(message, sender, sendResponse) {
 									if (tab.url.startsWith("http")) updateBadge(tab.id);
 								}
 							},
-							() => { console.log("FAILURE: set-badge-enabled > query"); }
+							() => { }
 						);
 					},
-					() => { console.log("FAILURE: set-badge-enabled"); }
+					() => { }
 				);
 				break;
 
@@ -83,7 +83,7 @@ function handleMessage(message, sender, sendResponse) {
 					() => {
 						browser.runtime.sendMessage({ target: "options", action: "reload-storage" });
 					},
-					() => { console.log("FAILURE: reload-storage"); }
+					() => { }
 				);
 				break;
 		}
@@ -97,7 +97,7 @@ function updateDomainSettings(url, domainSettings) {
 
 		browser.storage.local.remove(domain).then(
 			() => { browser.runtime.sendMessage({ target: "options", action: "reload-storage" }); },
-			() => { console.log("FAILURE: Remove", domain); }
+			() => { }
 		);
 	}
 	else {
@@ -106,7 +106,7 @@ function updateDomainSettings(url, domainSettings) {
 		dtmp[domain] = domainSettings;
 		browser.storage.local.set(dtmp).then(
 			() => { browser.runtime.sendMessage({ target: "options", action: "reload-storage" }); },
-			() => { console.log("FAILURE: updateDomainSettings ", dtmp); }
+			() => { }
 		);
 	}
 }

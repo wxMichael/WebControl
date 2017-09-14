@@ -33,7 +33,7 @@ function loadStorage() {
 			applyStoredSettings();
 			disableOptions(false);
 		},
-		() => { console.log("FAILURE: loadStorage"); }
+		() => { }
 	);
 
 	return promise;
@@ -97,10 +97,10 @@ document.getElementById("clear").addEventListener("click", e => {
 			let tmp = (storage.settings ? storage.settings.showBadgeText === true : true);
 			browser.storage.local.set({ settings: { showBadgeText: tmp } }).then(
 				() => { triggerStorageReload(); },
-				() => { console.log("FAILURE: Restore settings after clear"); }
+				() => { }
 			);
 		},
-		() => { console.log("FAILURE: clear storage"); }
+		() => { }
 	);
 });
 
@@ -137,7 +137,7 @@ document.getElementById("remove").addEventListener("click", e => {
 	if (storage[domain]) delete storage[domain];
 	browser.storage.local.remove(domain).then(
 		() => { triggerStorageReload(); },
-		() => { console.log("FAILURE: Remove", domain); }
+		() => { }
 	);
 });
 

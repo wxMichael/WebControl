@@ -24,7 +24,7 @@ browser.tabs.query({ currentWindow: true, active: true }).then(
 			}
 		}
 	},
-	() => { console.log("FAILURE: active tab query"); }
+	() => { }
 );
 
 function handleMessage(message, sender, sendResponse) {
@@ -49,7 +49,7 @@ function handleChange(e) {
 		tabs => {
 			browser.runtime.sendMessage({ target: "background", action: "save-domain", data: { url: tabs[0].url, domainSettings: domainSettings } });
 		},
-		() => { console.log("FAILURE: handleChange > query"); }
+		() => { }
 	);
 	return true;
 }
