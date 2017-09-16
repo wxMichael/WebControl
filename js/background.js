@@ -31,10 +31,6 @@ function isDefaults(domainSettings) {
 function handleMessage(message, sender, sendResponse) {
 	if (message.target.includes("background")) {
 		switch (message.action) {
-			case "author-link":
-				browser.tabs.create({ active: true, url: "https://github.com/wxMichael" });
-				break;
-
 			case "set-badge-enabled":
 				storage.settings.showBadgeText = message.data.showBadgeText;
 				browser.storage.local.set({ settings: { showBadgeText: message.data.showBadgeText } }).then(
