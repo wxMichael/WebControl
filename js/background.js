@@ -118,7 +118,7 @@ function updateBadge(tabId) {
 	if (storage.settings.showBadgeText) {
 		let count = badgeCounts[tabId.toString()];
 		if (!count || typeof count === undefined) count = 0;
-		badgeText = count < 1000 ? count.toString() : "1k+";
+		if (count !== 0) badgeText = count < 1000 ? count.toString() : "1k+";
 	}
 
 	browser.browserAction.setBadgeText({ text: badgeText, tabId: tabId });
