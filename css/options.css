@@ -139,3 +139,11 @@ table {
 #domain-info td[data-enabled="false"] {
   color: #800;
 }
+
+#feedback tr:first-child {
+  font-weight: bold;
+}
+
+#feedback span {
+  font-style: italic;
+}
