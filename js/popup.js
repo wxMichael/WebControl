@@ -67,6 +67,7 @@ function handleClick(e) {
 		case "options-link":
 		case "options-link-img":
 			browser.runtime.openOptionsPage();
+			window.close();
 			break;
 	}
 }
