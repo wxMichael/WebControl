@@ -126,17 +126,19 @@ clearInfo();
 
 window.addEventListener("load", loadStorage);
 
-document.getElementById("clear").addEventListener("click", e => {
-	browser.storage.local.clear().then(
-		() => {
-			let tmp = (storage.settings ? storage.settings.showBadgeText === true : true);
-			browser.storage.local.set({ settings: { showBadgeText: tmp } }).then(
-				() => { triggerStorageReload(); },
-				() => { }
-			);
-		},
-		() => { }
-	);
+document.getElementById("remove-all").addEventListener("click", e => {
+	if (confirm("Delete all domain settings?")) {
+		browser.storage.local.clear().then(
+			() => {
+				let tmp = (storage.settings ? storage.settings.showBadgeText === true : true);
+				browser.storage.local.set({ settings: { showBadgeText: tmp } }).then(
+					() => { triggerStorageReload(); },
+					() => { }
+				);
+			},
+			() => { }
+		);
+	}
 });
 
 badgeToggle.addEventListener("change", e => {
