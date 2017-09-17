@@ -94,6 +94,10 @@ table {
   border-collapse: collapse;
 }
 
+input[type="button"] {
+  min-width: 100px;
+}
+
 .left {
   text-align: left;
 }
@@ -140,10 +144,16 @@ table {
   color: #800;
 }
 
-#feedback tr:first-child {
+#feedback tr:first-child,
+#backup-restore tr:first-child {
   font-weight: bold;
 }
 
-#feedback span {
+#feedback span,
+#backup-restore span {
   font-style: italic;
+}
+
+#import-file {
+  display: none;
 }

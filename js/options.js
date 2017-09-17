@@ -3,6 +3,7 @@
 let storage = {};
 let badgeToggle		= document.getElementById("badge-toggle");
 let domainSelect	= document.getElementById("domains");
+let importFile		= document.getElementById("import-file");
 
 let domainScripts	= document.getElementById("domain-scripts");
 let domainStyles	= document.getElementById("domain-styles");
@@ -59,7 +60,7 @@ function applyStoredSettings() {
 	clearInfo();
 	for (let property in storage) {
 		if (property === "settings") continue;
-		let opt = document.createElement("option");
+		let opt		= document.createElement("option");
 		opt.text	= property;
 		opt.value	= property;
 		domainSelect.add(opt);
@@ -83,6 +84,40 @@ function clearInfo() {
 	domainImages.dataset.enabled	= "";
 	domainObjects.dataset.enabled	= "";
 	domainMedia.dataset.enabled		= "";
+}
+
+function pad(input) {
+	return input.toString().padStart(2, "0");
+}
+
+function importError() {
+	alert("Import failed! Invalid content in json file.");
+}
+
+function processImport(imported) {
+	if (!imported.hasOwnProperty("settings") || typeof imported.settings !== "object") return false;
+	if (!imported.settings.hasOwnProperty("showBadgeText") || typeof imported.settings.showBadgeText !== "boolean") return false;
+	for (let property in imported) {
+		if (property === "settings") continue;
+
+		if (!Array.isArray(imported[property]) || imported[property].length !== 5) return false;
+
+		for (let i = 0; i < 5; i++) {
+			if (typeof imported[property][i] !== "boolean") return false;
+		}
+	}
+
+	browser.storage.local.clear().then(
+		() => {
+			browser.storage.local.set(imported).then(
+				() => { triggerStorageReload(); },
+				() => { }
+			);
+		},
+		() => { }
+	);
+
+	return true;
 }
 
 // ----------------------------------------
@@ -139,6 +174,41 @@ document.getElementById("remove").addEventListener("click", e => {
 		() => { triggerStorageReload(); },
 		() => { }
 	);
+});
+
+document.getElementById("export").addEventListener("click", e => {
+	let blob = new Blob([JSON.stringify(storage)], { type: "application/json" });
+	let d = new Date();
+
+	browser.downloads.download({
+		saveAs: true,
+		filename: `WebControl-${d.getFullYear()}-${pad(d.getMonth())}-${pad(d.getDate())}__${pad(d.getHours())}-${pad(d.getMinutes())}-${pad(d.getSeconds())}.json`,
+		url: URL.createObjectURL(blob)
+	});
+});
+
+document.getElementById("import").addEventListener("click", e => {
+	importFile.click();
+});
+
+importFile.addEventListener("change", e => {
+	if (importFile.files.length === 0 || importFile.files[0].size === 0) {
+		importError();
+		return;
+	}
+
+	let reader = new FileReader();
+	reader.onload = () => {
+		try {
+			let imported = JSON.parse(reader.result);
+			if (!processImport(imported)) importError();
+		}
+		catch (error) {
+			alert("Import failed! Syntax error in json file.");
+		}
+	};
+
+	reader.readAsText(importFile.files[0]);
 });
 
 browser.runtime.onMessage.addListener(handleMessage);
